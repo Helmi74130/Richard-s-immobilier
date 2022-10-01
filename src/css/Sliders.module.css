@@ -1,0 +1,25 @@
+.filter{
+  height: 90vh;
+  font-family: 'Times New Roman', Times, serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.329);
+}
+.carouss{
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  z-index: -1;
+}
+.image{
+  height: 100vh;
+}
+.blockCenter{
+  
+  color: bisque;
+  text-align: center;
+}
+.title{
+  font-size: 6em
+}

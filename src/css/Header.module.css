@@ -1,0 +1,35 @@
+header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(95, 91, 91, 0.171);
+  z-index: 1;
+}
+.headerTitle{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 2em;
+  display: flex;
+  margin-left: 20px;
+}
+.image{
+  height: 60px;
+  width: 60px;
+  margin-right: 10px;
+}
+nav{
+  flex: 3;
+}
+ul{
+  display: flex;
+  justify-content: space-evenly;
+}
+li{
+  list-style: none;
+}
+a{
+  text-decoration: none;
+  color: black;
+}
+.listSocial{
+  flex: 1;
+}
