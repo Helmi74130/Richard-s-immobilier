@@ -1,0 +1,12 @@
+.img{
+  width: 100%;
+  height: 450px;
+}
+.content{
+  font-family: 'Times New Roman', Times, serif;
+}
+.price{
+  font-size: 4em;
+  text-align: center;
+  color: rgb(187, 117, 25);
+}

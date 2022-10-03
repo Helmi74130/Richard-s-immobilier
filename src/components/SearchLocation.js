@@ -3,7 +3,7 @@ import {  Link } from "react-router-dom";
 import axios from 'axios';
 import styles from '../css/Card.module.css'
 
-const Search = () => {
+const SearchLocation = () => {
 
     const [roomsValue, setRoomsValue]= useState('') 
     const handleRoomsValue = (e)=>{
@@ -64,7 +64,7 @@ const Search = () => {
       checkInputLocalisation()
       e.preventDefault()
       const fetchData =async () =>{
-        await axios(`http://localhost:8055/items/product?fields=title,price,id,surface,type.name,city.name,price,thumbnail,rooms${valueProduct}${roomsValue}${valueCity}&filter[price][_between]=${valuePriceMin},${valuePriceMax}&filter[state][_eq]=vente`)
+        await axios(`http://localhost:8055/items/product?fields=title,price,id,surface,type.name,city.name,price,thumbnail,rooms${valueProduct}${roomsValue}${valueCity}&filter[price][_between]=${valuePriceMin},${valuePriceMax}&filter[state][_eq]=location`)
         .then( 
           response => {
             if (!response.data.data || response.data.data.length == 0) {
@@ -89,7 +89,7 @@ const Search = () => {
     const [dataAll, setDataAll]= useState([])
     useEffect(()=>{
       const fetchData =async () =>{
-        const result = await axios(`http://localhost:8055/items/product?fields=city.name,type.name&filter[state][_eq]=vente`)
+        const result = await axios(`http://localhost:8055/items/product?fields=city.name,type.name&filter[state][_eq]=location`)
         setDataAll(result.data.data)
       }
       fetchData()
@@ -136,7 +136,7 @@ const Search = () => {
 
   useEffect(()=>{
     const fetchData =async () =>{
-      const result = await axios('http://localhost:8055/items/product?fields=title,price,id,surface,city.name,price,thumbnail,rooms,type.name&filter[state][_eq]=vente')
+      const result = await axios('http://localhost:8055/items/product?fields=title,price,id,surface,city.name,price,thumbnail,rooms,type.name&filter[state][_eq]=location')
       setData(result.data.data)
     }
     fetchData()
@@ -191,7 +191,7 @@ const Search = () => {
           <h2 className='text-center mt-3 text-danger'>{emptyData}</h2>
         </form>
       </div>
-      <h1 className='mt-5 ms-5 mb-5'>Ventes</h1>
+      <h1 className='mt-5 ms-5 mb-5'>Location</h1>
       <main>
         {card}
       </main>
@@ -200,4 +200,4 @@ const Search = () => {
   
 }
 
-export default Search
+export default SearchLocation

@@ -2,7 +2,7 @@ header{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(95, 91, 91, 0.171);
+  background: rgba(212, 209, 209, 0.171);
   z-index: 1;
 }
 .headerTitle{
@@ -10,6 +10,10 @@ header{
   font-size: 2em;
   display: flex;
   margin-left: 20px;
+}
+.titleBlock{
+  display: flex;
+  justify-content: space-between;
 }
 .image{
   height: 60px;
@@ -30,6 +34,46 @@ a{
   text-decoration: none;
   color: black;
 }
+a:hover{
+  color: bisque;
+}
+.buttonBlock{
+  display: flex;
+  align-items: center;
+  margin-right: 2em;
+  display: none;
+}
 .listSocial{
   flex: 1;
+}
+
+
+
+@media only screen and (max-width: 800px) {
+  header{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .buttonBlock{
+    display: block;
+  }
+ 
+  ul{
+    display: flex;
+    flex-direction: column;
+  }
+  .liSocial{
+    margin-right: 1em;
+  }
+  .social{
+    display: flex;
+    flex-direction: row;
+  }
+  .titleBlock{
+    width: 100%;
+  }
+  header{
+    background: rgba(219, 217, 217, 0.712);
+  }
 }

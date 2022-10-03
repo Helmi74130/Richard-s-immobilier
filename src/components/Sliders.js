@@ -22,9 +22,9 @@ function Sliders() {
   const carousel = data[0]?.name.map(index => {
     return(
         <Carousel.Item key={index.id}>
-          <img  /* className="d-block w-100 image" */ className={styles.image} src={"http://localhost:8055/assets/"+index.directus_files_id} alt=""/>    
+          <img className={styles.image} src={"http://localhost:8055/assets/"+index.directus_files_id} alt=""/>    
           <Carousel.Caption>
-            <p>A votre écoute depuis 20 ans</p>
+            <p className='text-black'>A votre écoute depuis 20 ans</p>
           </Carousel.Caption>
         </Carousel.Item>
     )
