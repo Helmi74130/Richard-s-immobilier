@@ -3,7 +3,9 @@ header{
   justify-content: space-between;
   align-items: center;
   background: rgba(212, 209, 209, 0.171);
+  background-image: linear-gradient(to right, #3e5f7a, #040508);
   z-index: 1;
+  font-family: 'Times New Roman', Times, serif;
 }
 .headerTitle{
   font-family: 'Times New Roman', Times, serif;
@@ -32,7 +34,7 @@ li{
 }
 a{
   text-decoration: none;
-  color: black;
+  color: white;
 }
 a:hover{
   color: bisque;
@@ -46,7 +48,9 @@ a:hover{
 .listSocial{
   flex: 1;
 }
-
+button{
+  background-image: linear-gradient(to right, #5f707e, #040508);
+}
 
 
 @media only screen and (max-width: 800px) {
@@ -58,22 +62,27 @@ a:hover{
   .buttonBlock{
     display: block;
   }
+  .liNav{
+    text-align: center;
+    font-size: 2.5rem;
+  }
+  nav{
+    text-align: center;
+    width: 100%;
+  }
  
   ul{
     display: flex;
     flex-direction: column;
+    text-align: center;
   }
   .liSocial{
     margin-right: 1em;
   }
   .social{
-    display: flex;
-    flex-direction: row;
+    display: none;
   }
   .titleBlock{
     width: 100%;
-  }
-  header{
-    background: rgba(219, 217, 217, 0.712);
   }
 }

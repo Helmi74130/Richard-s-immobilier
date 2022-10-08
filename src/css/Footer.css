@@ -1,3 +1,4 @@
 .footer{
-  background: rgba(95, 91, 91, 0.171);
+  background-image: linear-gradient(to right, #3e5f7a, #040508);
+  color: white;
 }

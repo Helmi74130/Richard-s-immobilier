@@ -9,7 +9,7 @@ const Footer = () => {
       <div className="row mt-4">
         <div className="col-lg-6 col-md-12 mb-4 mb-md-0">
           <h5 className="text-uppercase mb-4">Richard's Immobilier</h5>
-          <p>
+          <p className=' text-light'>
           Que vous achetiez ou vendiez une maison, Richard's Immobilier vous offre une expérience extraordinaire. Nous nous engageons à vous aider à prendre des décisions éclairées en capitalisant sur les opportunités et les tendances actuelles du marché.
           </p>
           <div className="mt-4">
@@ -21,7 +21,7 @@ const Footer = () => {
         <div className="col-lg-6 col-md-12 mb-4 mb-md-0">
           <h5 className="text-uppercase mb-4 text-center">Horaires</h5>
           <table className="table text-center">
-            <tbody className="fw-normal">
+            <tbody className="fw-normal  text-light">
               <tr>
                 <td>Lun - Ven:</td>
                 <td>8h - 18h</td>

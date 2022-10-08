@@ -2,6 +2,7 @@ import React, {  useEffect ,  useState} from 'react'
 import {  Link } from "react-router-dom";
 import axios from 'axios';
 import styles from '../css/Card.module.css'
+import img from '../img/richard.png'
 
 const SearchLocation = () => {
 
@@ -109,21 +110,36 @@ const SearchLocation = () => {
       return string[0].toUpperCase() + string.slice(1);
     }
 
+    function separator(numb) {
+      var str = numb.toString().split(".");
+      str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+      return str.join(".");
+    }
+
     /* this function displays search data */
   const card =  data.map(index => (
-    <Link to={"/produit/"+index.id} key={index.id} className={styles.card}>
-      <img className={styles.imgCard} src={"http://localhost:8055/assets/"+index.thumbnail} alt=""/>
-      <div className={styles.cardDescription}>
-        <div className={styles.descriptionTop}>
-          <h3>{capitalizeFirstLetter(index.type.name)} {index.type.name === 'maison' || index.type.name === 'appartement'? index.rooms +' pièces' : null }</h3>
-          <p><i className="bi bi-geo-alt"></i>{index.city.name}</p>
-        </div>
-        <div className={styles.descriptionBottom}>
-          <p>{index.price} <i className="bi bi-currency-euro"></i></p>
-          <p>{index.surface} m<sup>2</sup></p>
-        </div>
-      </div>
-    </Link>
+    <ul key={index.id} className={`${styles.cards} col-5 mt-5`}>
+      <li>
+        <Link to={"/produit/"+index.id}  className={styles.card}>
+          <img src={"http://localhost:8055/assets/"+index.thumbnail} className={styles.card__image} alt="image du bien immobilier" />
+          <div className={styles.card__overlay}>
+            <div className={styles.card__header}>
+              <svg className={styles.card__arc} xmlns=""><path /></svg>                     
+              <img className={styles.card__thumb} src={img} alt="" />
+              <div className={`${styles.card__text} d-flex justify-content-between w-100`}>
+                <h3 className={styles.card__title}>{capitalizeFirstLetter(index.type.name)} {index.type.name === 'maison' || index.type.name === 'appartement'? index.rooms +' pièces' : null }</h3>            
+                <span className={styles.card__status}>{index.city.name}</span>
+              </div>
+            </div>
+            <div className={`${styles.card__description} d-flex justify-content-around`}>
+              <p>{separator(index.price)} <i className="bi bi-currency-euro"></i></p>
+              <p>{index.surface} m<sup>2</sup></p>
+              { index.rooms ? <p>{index.rooms} pièces</p>: null}
+            </div>
+          </div>
+        </Link>
+      </li>
+    </ul>
   ))
 
   const selectGoods = goodsFilter.map(index =>(
@@ -144,7 +160,7 @@ const SearchLocation = () => {
 
   return (
     <>
-      <div className='container mt-5 bg-light p-3 rounded'>
+      <div className={`${styles.bgHeader} container mt-5 bg-light p-3 rounded text-light`}>
         <form className="row">
           <div className="col-xl-2 col-md-3 col-6">
               <label className="form-label ms-2">Type de bien: </label>
@@ -192,9 +208,12 @@ const SearchLocation = () => {
         </form>
       </div>
       <h1 className='mt-5 ms-5 mb-5'>Location</h1>
-      <main>
-        {card}
-      </main>
+      <div className='container'>
+        <div className='row justify-content-around'>
+          {card}
+        </div>
+      </div>
+      
     </>
   )
   

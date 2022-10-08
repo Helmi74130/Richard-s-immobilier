@@ -19,18 +19,18 @@ const Header = () => {
       <div className={styles.titleBlock}>
         <Link to="/" className={styles.headerTitle}>
           <img className={styles.image} alt='logo' src={img3}/>
-          <p>Richard's immobilier</p>
+          <p className='text-light'>Richard's immobilier</p>
         </Link>
         <div className={styles.buttonBlock}>
-          <button className='btn btn-dark mt-2' onClick={handleclick}><i class="bi bi-list"></i></button>
+          <button className='btn btn-dark mt-2' onClick={handleclick}><i className="bi bi-list"></i></button>
         </div>
       </div>
       <nav>
         <ul className={`${classHeaderButton} ${styles.link}`}>
-          <li><Link to="/">Accueil</Link></li>
-          <li><Link to="/nosBiens">Ventes</Link></li>
-          <li><Link to="/locations">Locations</Link></li>
-          <li><Link to="/contact">Contact</Link></li>
+          <li className={styles.liNav}><Link to="/">Accueil</Link></li>
+          <li className={styles.liNav}><Link to="/nosBiens">Ventes</Link></li>
+          <li className={styles.liNav}><Link to="/locations">Locations</Link></li>
+          <li className={styles.liNav}><Link to="/contact">Contact</Link></li>
         </ul>
       </nav>
       <div className={`${classHeaderButton} ${styles.listSocial}`}>
