@@ -5,6 +5,7 @@ import OurProducts from './pages/OurProducts';
 import Product from './pages/Product';
 import LocationProducts from './pages/LocationProducts';
 import Contact from './pages/Contact';
+import AllProducts from './pages/AllProducts';
 
 
 
@@ -14,10 +15,11 @@ function App() {
     <>
     <Routes>
       <Route path='/' element={<Home/>}/>
-      <Route path='/NosBiens' element={<OurProducts/>}/>
+      <Route path='/ventes' element={<OurProducts/>}/>
       <Route path='/locations' element={<LocationProducts/>}/>
       <Route path='/contact' element={<Contact/>}/>
       <Route path='/produit/:id' element={<Product/>}/>
+      <Route path='/nosbiens' element={<AllProducts/>}/>
     </Routes>
     </>
   );

@@ -1,31 +1,31 @@
 
-.filter{
+/* .filter{
   height: 100vh;
   font-family: 'Times New Roman', Times, serif;
   display: flex;
   justify-content: center;
   align-items: center;
   
-}
-.carouss{
+} */
+/* .carouss{
   height: 100vh;
   position: absolute;
   top: 0;
   z-index: -1;
-}
-.image{
+} */
+/* .image{
   height: 100vh;
   
-}
-.blockCenter{
+} */
+/* .blockCenter{
   background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
   backdrop-filter: blur(2px);;
   color: black;
   text-align: center;
   padding: 50px;
   border-radius: 20px;
-}
-.title{
+} */
+/* .title{
   font-size: 6em
 }
 
@@ -36,3 +36,9 @@
     margin-top: 50px;
   }
 }
+ */
+
+ .image{
+  border-radius:94% 6% 68% 32% / 0% 91% 9% 100%     ;
+  height: 600px;
+ }

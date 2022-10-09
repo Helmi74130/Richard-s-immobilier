@@ -2,6 +2,14 @@
   margin: 0;
   
 }
+.h1{
+  font-size: 5em;
+  background: -webkit-linear-gradient(#ffffff, #041470);
+  -webkit-background-clip: text;
+  font-weight: bold;
+  -webkit-text-fill-color: transparent;
+  font-family: 'Times New Roman', Times, serif;
+}
 main{
   display: flex;
   justify-content: space-around;

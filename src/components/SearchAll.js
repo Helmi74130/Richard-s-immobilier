@@ -4,9 +4,9 @@ import axios from 'axios';
 import styles from '../css/Card.module.css'
 import img from '../img/richard.png'
 
-const Search = () => {
 
-    const [roomsValue, setRoomsValue]= useState('') 
+const SearchAll = () => {
+  const [roomsValue, setRoomsValue]= useState('') 
     const handleRoomsValue = (e)=>{
       setRoomsValue('&filter[rooms][_eq]='+e.target.value)
     }
@@ -80,7 +80,7 @@ const Search = () => {
       checkInputLocalisation()
       e.preventDefault()
       const fetchData =async () =>{
-        await axios(`http://localhost:8055/items/product?fields=title,price,id,surface,type.name,city.name,price,thumbnail,rooms${valueProduct}${roomsValue}${valueCity}&filter[price][_between]=${valuePriceMin},${valuePriceMax}&filter[state][_eq]=vente`)
+        await axios(`http://localhost:8055/items/product?fields=title,price,id,surface,type.name,city.name,price,thumbnail,rooms${valueProduct}${roomsValue}${valueCity}&filter[price][_between]=${valuePriceMin},${valuePriceMax}`)
         .then( 
           response => {
             if (!response.data.data || response.data.data.length === 0) {
@@ -105,7 +105,7 @@ const Search = () => {
     const [dataAll, setDataAll]= useState([])
     useEffect(()=>{
       const fetchData =async () =>{
-        const result = await axios(`http://localhost:8055/items/product?fields=city.name,type.name&filter[state][_eq]=vente`)
+        const result = await axios(`http://localhost:8055/items/product?fields=city.name,type.name`)
         setDataAll(result.data.data)
       }
       fetchData()
@@ -167,7 +167,7 @@ const Search = () => {
 
   useEffect(()=>{
     const fetchData =async () =>{
-      const result = await axios('http://localhost:8055/items/product?fields=title,price,id,surface,city.name,price,thumbnail,rooms,type.name&filter[state][_eq]=vente')
+      const result = await axios('http://localhost:8055/items/product?fields=title,price,id,surface,city.name,price,thumbnail,rooms,type.name')
       setData(result.data.data)
     }
     fetchData()
@@ -237,4 +237,4 @@ const Search = () => {
   
 }
 
-export default Search
+export default SearchAll

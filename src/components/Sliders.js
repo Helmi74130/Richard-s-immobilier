@@ -33,12 +33,12 @@ function Sliders() {
 
   return (
     <>
-      <div className={styles.filter}>
+      {/* <div className={styles.filter}>
         <div className={styles.blockCenter}>
           <h1 className={styles.title}>Richard's Immobilier</h1>
           <p>IMMOBILIER HAUT DE GAMME ET DE LUXE</p>
         </div>
-      </div>
+      </div> */}
       <Carousel className={styles.carouss} fade>
       {carousel}
       </Carousel>

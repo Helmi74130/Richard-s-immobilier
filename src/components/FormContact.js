@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from '../css/FormContact.module.css'
-import img from '../img/villa.jpg'
+import img from '../img/villa2.jpg'
 
 const FormContact = () => {
   return (

@@ -1,18 +1,28 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Outlet, Link } from "react-router-dom";
 import styles from '../css/Header.module.css'
 import img3 from '../img/richardbg.png'
 
 const Header = () => {
 
-  const [classHeaderButton, setclassHeaderButton]= useState('show')
-  const handleclick= ()=>{
-    if(classHeaderButton === 'd-none'){
-      setclassHeaderButton('show')
-    }else{
-      setclassHeaderButton('d-none')
-    }
+  const [largeur, setLargeur] = useState(window.innerWidth)
+  const [toggleMenu, setToggleMenu]= useState(false)
+  const toggleNavSmallScreen= ()=>{
+      setToggleMenu(!toggleMenu)
   }
+  useEffect(() => {
+    const changeWidth = () =>{
+      setLargeur(window.innerWidth)
+      if (window.innerWidth > 800) {
+        setToggleMenu(false)
+      }
+    }
+    window.addEventListener('resize', changeWidth)
+
+    return() => {
+      window.removeEventListener('resize', changeWidth)
+    }
+  },[])
 
   return (
     <header>
@@ -22,18 +32,21 @@ const Header = () => {
           <p className='text-light'>Richard's immobilier</p>
         </Link>
         <div className={styles.buttonBlock}>
-          <button className='btn btn-dark mt-2' onClick={handleclick}><i className="bi bi-list"></i></button>
+          <button className='btn btn-dark mt-2' onClick={toggleNavSmallScreen}><i className="bi bi-list"></i></button>
         </div>
       </div>
-      <nav>
-        <ul className={`${classHeaderButton} ${styles.link}`}>
-          <li className={styles.liNav}><Link to="/">Accueil</Link></li>
-          <li className={styles.liNav}><Link to="/nosBiens">Ventes</Link></li>
-          <li className={styles.liNav}><Link to="/locations">Locations</Link></li>
-          <li className={styles.liNav}><Link to="/contact">Contact</Link></li>
-        </ul>
-      </nav>
-      <div className={`${classHeaderButton} ${styles.listSocial}`}>
+      {(toggleMenu || largeur > 800) && (
+        <nav>
+          <ul className={styles.link}>
+            <li className={styles.liNav}><Link to="/">Accueil</Link></li>
+            <li className={styles.liNav}><Link to="/nosbiens">Nos biens</Link></li>
+            <li className={styles.liNav}><Link to="/ventes">Ventes</Link></li>
+            <li className={styles.liNav}><Link to="/locations">Locations</Link></li>
+            <li className={styles.liNav}><Link to="/contact">Contact</Link></li>
+          </ul>
+        </nav>
+      )}
+      <div className={styles.listSocial}>
         <ul className={styles.social}>
           <li className={styles.liSocial}><a href='https://www.instagram.com/'><i className="bi bi-instagram"></i></a></li>
           <li className={styles.liSocial}><a href='https://twitter.com/'><i className="bi bi-twitter"></i></a></li>
