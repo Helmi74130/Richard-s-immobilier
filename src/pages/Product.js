@@ -21,7 +21,7 @@ const Product = () => {
 
   useEffect(()=>{
     const fetchData =async () =>{
-      const result = await axios(`http://localhost:8055/items/product?filter[id][_eq]=${params.id}&fields=title,description,price,id,state,date_created,position,surface,type.name,bedrooms,city.name,price,thumbnail,rooms,images.*`)
+      const result = await axios(`http://localhost:8055/items/product?filter[id][_eq]=${params.id}&fields=title,description,price,reference,id,state,date_created,position,surface,type.name,bedrooms,city.name,price,thumbnail,rooms,images.*`)
       setData(result.data.data)
     }
     fetchData()
@@ -115,7 +115,10 @@ function surfacePrice(price, surface){
                 <p className='fs-2'> {index.surface} m<sup>2</sup></p>
               </div>
               <p className='fs-3'><i className="bi bi-geo-alt"></i> {index.city.name}</p>
-              <p>Mise en ligne le: {new Date(index.date_created).toLocaleString('fr-FR')}</p>
+              <div>
+                <p>Mise en ligne le: {new Date(index.date_created).toLocaleString('fr-FR')}</p>
+                <p>Réf: {index.reference}</p>
+              </div>
             </div>
             <div className='container mt-5'>
               <div className='row'>

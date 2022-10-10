@@ -18,7 +18,7 @@ const Card = () => {
 
  const card =  data.map(index => (
     <Link to={"/nosBiens/"+index.id} key={index.id} className={styles.card}>
-      <img className={styles.imgCard} src={"http://localhost:8055/assets/"+index.thumbnail} alt=""/>
+      <img className={styles.imgCard} src={"http://localhost:8055/assets/"+index.thumbnail} alt="image de biens immobilier"/>
       <div className={styles.cardDescription}>
         <div className={styles.descriptionTop}>
           <h3>{index.title} {index.rooms} pièces</h3>

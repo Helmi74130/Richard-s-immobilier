@@ -76,6 +76,7 @@ const SearchAll = () => {
     /* this function retrieves data for the search bar */
     const [data, setData]= useState([])
     const handleButton = (e)=>{
+      setToggleButton(false)
       checkInputGoods()
       checkInputLocalisation()
       e.preventDefault()
@@ -194,6 +195,8 @@ const SearchAll = () => {
     window.scrollTo({top: 0});
   },[data])
 
+  const [toggleButton, setToggleButton]= useState(true)
+
   return (
     <>
       <div className={`${styles.bgHeader} container mt-5 bg-light p-3 rounded`}>
@@ -252,23 +255,26 @@ const SearchAll = () => {
           {card}
         </div>
       </div>
-      <ReactPaginate
-        breakLabel="..."
-        nextLabel="suivant >"
-        onPageChange={handlePageClick}
-        pageRangeDisplayed={5}
-        pageCount={pageNumber}
-        previousLabel="< précédent"
-        renderOnZeroPageCount={null}
-        containerClassName={"pagination justify-content-center mt-5"}
-        pageClassName={"page-item"}
-        pageLinkClassName={"page-link"}
-        previousClassName={"page-item"}
-        nextClassName={"page-item"}
-        previousLinkClassName={"page-link"}
-        nextLinkClassName={"page-link"}
-        activeClassName={styles.active}
-      />
+      {(toggleButton)&&
+        <ReactPaginate
+          breakLabel="..."
+          nextLabel="suivant >"
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={5}
+          pageCount={pageNumber}
+          previousLabel="< précédent"
+          renderOnZeroPageCount={null}
+          containerClassName={"pagination justify-content-center mt-5"}
+          pageClassName={"page-item"}
+          pageLinkClassName={"page-link"}
+          previousClassName={"page-item"}
+          nextClassName={"page-item"}
+          previousLinkClassName={"page-link"}
+          nextLinkClassName={"page-link"}
+          activeClassName={styles.active}
+        />
+      }
+      
     </>
   )
   

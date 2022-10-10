@@ -30,7 +30,7 @@ const Header = () => {
     <header>
       <div className={styles.titleBlock}>
         <NavLink to="/accueil" className={styles.headerTitle}>
-          <img className={styles.image} alt='logo' src={img3}/>
+          <img className={styles.image} alt="logo de l'entreprise" src={img3}/>
           <p className='text-light'>Richard's immobilier</p>
         </NavLink>
         <div className={styles.buttonBlock}>

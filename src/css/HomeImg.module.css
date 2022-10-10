@@ -39,6 +39,25 @@
   font-size: 6em;
   color: aqua;
 }
+.content{
+  position: relative;
+}
+
+.imgBlock{
+  position: absolute;
+  bottom: 40%;
+}
+
+.block{
+  background-image: linear-gradient(to right, #3e5f7a, #040508);
+  height: 350px;
+  margin-top: 200px;
+}
+.h4{
+  font-size: 3em;
+  color: #b89b75;
+  font-family: 'Times New Roman', Times, serif;
+}
 
 .show{
   
