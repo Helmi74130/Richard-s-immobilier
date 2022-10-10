@@ -81,7 +81,7 @@ const SearchAll = () => {
       checkInputLocalisation()
       e.preventDefault()
       const fetchData =async () =>{
-        await axios(`http://localhost:8055/items/product?fields=title,price,id,surface,type.name,city.name,price,thumbnail,rooms${valueProduct}${roomsValue}${valueCity}&filter[price][_between]=${valuePriceMin},${valuePriceMax}&limit=4&filter[state][_eq]=vente`)
+        await axios(`http://localhost:8055/items/product?fields=title,price,id,surface,type.name,city.name,price,thumbnail,rooms${valueProduct}${roomsValue}${valueCity}&filter[price][_between]=${valuePriceMin},${valuePriceMax}&filter[state][_eq]=vente&sort=-date_created`)
         .then( 
           response => {
             if (!response.data.data || response.data.data.length === 0) {
@@ -108,7 +108,7 @@ const SearchAll = () => {
     const [dataAll, setDataAll]= useState([])
     useEffect(()=>{
       const fetchData =async () =>{
-        const result = await axios(`http://localhost:8055/items/product?fields=city.name,type.name&filter[state][_eq]=vente`)
+        const result = await axios(`http://localhost:8055/items/product?fields=city.name,type.name&filter[state][_eq]=vente&sort=-date_created`)
         setDataAll(result.data.data)
         const total = result.data.data.length
         setPageNumber(total/4)
@@ -173,14 +173,14 @@ const SearchAll = () => {
 
   useEffect(()=>{
     const fetchData =async () =>{
-      const result = await axios('http://localhost:8055/items/product?fields=title,price,id,surface,city.name,price,thumbnail,rooms,type.name&page=1&limit=4&filter[state][_eq]=vente')
+      const result = await axios('http://localhost:8055/items/product?fields=title,price,id,surface,city.name,price,thumbnail,rooms,type.name&page=1&limit=4&filter[state][_eq]=vente&sort=-date_created')
       setData(result.data.data)
     }
     fetchData()
   },[])
 
   const testData =async (currentPage) =>{
-    const result = await axios(`http://localhost:8055/items/product?fields=title,price,id,surface,city.name,price,thumbnail,rooms,type.name&page=${currentPage}&limit=4&filter[state][_eq]=vente`)
+    const result = await axios(`http://localhost:8055/items/product?fields=title,price,id,surface,city.name,price,thumbnail,rooms,type.name&page=${currentPage}&limit=4&filter[state][_eq]=vente&sort=-date_created`)
     const data = result.data.data
     return data
   }
