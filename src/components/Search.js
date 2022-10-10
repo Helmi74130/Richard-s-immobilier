@@ -3,10 +3,11 @@ import {  Link } from "react-router-dom";
 import axios from 'axios';
 import styles from '../css/Card.module.css'
 import img from '../img/richard.png'
+import ReactPaginate from 'react-paginate';
 
-const Search = () => {
 
-    const [roomsValue, setRoomsValue]= useState('') 
+const SearchAll = () => {
+  const [roomsValue, setRoomsValue]= useState('') 
     const handleRoomsValue = (e)=>{
       setRoomsValue('&filter[rooms][_eq]='+e.target.value)
     }
@@ -29,7 +30,6 @@ const Search = () => {
     if (valueCity === '&filter[city][name][_eq]=localisation') {
       setValueCity('')
     }
-    console.log(valueCity);
     const [valuePriceMin, setvaluePriceMin] = useState(0);
     const handleChangeValuePriceMin = (e) => {
        setvaluePriceMin(e.target.value);   
@@ -80,7 +80,7 @@ const Search = () => {
       checkInputLocalisation()
       e.preventDefault()
       const fetchData =async () =>{
-        await axios(`http://localhost:8055/items/product?fields=title,price,id,surface,type.name,city.name,price,thumbnail,rooms${valueProduct}${roomsValue}${valueCity}&filter[price][_between]=${valuePriceMin},${valuePriceMax}&filter[state][_eq]=vente`)
+        await axios(`http://localhost:8055/items/product?fields=title,price,id,surface,type.name,city.name,price,thumbnail,rooms${valueProduct}${roomsValue}${valueCity}&filter[price][_between]=${valuePriceMin},${valuePriceMax}&limit=4&filter[state][_eq]=vente`)
         .then( 
           response => {
             if (!response.data.data || response.data.data.length === 0) {
@@ -101,12 +101,16 @@ const Search = () => {
       fetchData()
     }
 
+    const [pageNumber, setPageNumber] = useState(0);
+
     /* This function get the names of type and cities  */
     const [dataAll, setDataAll]= useState([])
     useEffect(()=>{
       const fetchData =async () =>{
         const result = await axios(`http://localhost:8055/items/product?fields=city.name,type.name&filter[state][_eq]=vente`)
         setDataAll(result.data.data)
+        const total = result.data.data.length
+        setPageNumber(total/4)
       }
       fetchData()
     },[])
@@ -165,13 +169,30 @@ const Search = () => {
     <option key={index} value={""+index}>{capitalizeFirstLetter(index)}</option>
   ))
 
+
   useEffect(()=>{
     const fetchData =async () =>{
-      const result = await axios('http://localhost:8055/items/product?fields=title,price,id,surface,city.name,price,thumbnail,rooms,type.name&filter[state][_eq]=vente')
+      const result = await axios('http://localhost:8055/items/product?fields=title,price,id,surface,city.name,price,thumbnail,rooms,type.name&page=1&limit=4&filter[state][_eq]=vente')
       setData(result.data.data)
     }
     fetchData()
   },[])
+
+  const testData =async (currentPage) =>{
+    const result = await axios(`http://localhost:8055/items/product?fields=title,price,id,surface,city.name,price,thumbnail,rooms,type.name&page=${currentPage}&limit=4&filter[state][_eq]=vente`)
+    const data = result.data.data
+    return data
+  }
+
+  const handlePageClick = async (data) => {
+    let currentPage = data.selected + 1;
+    const commentFormServer = await testData(currentPage); 
+    setData(commentFormServer);
+  }
+
+  useEffect(()=>{
+    window.scrollTo({top: 0});
+  },[data])
 
   return (
     <>
@@ -226,15 +247,31 @@ const Search = () => {
           <h2 className='text-center mt-3 text-danger'>{emptyData}</h2>
         </form>
       </div>
-      <h1 className={`${styles.h1} mt-5 ms-5 mb-5`}>Ventes</h1>
       <div className='container'>
         <div className='row justify-content-around'>
           {card}
         </div>
       </div>
+      <ReactPaginate
+        breakLabel="..."
+        nextLabel="suivant >"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={5}
+        pageCount={pageNumber}
+        previousLabel="< précédent"
+        renderOnZeroPageCount={null}
+        containerClassName={"pagination justify-content-center mt-5"}
+        pageClassName={"page-item"}
+        pageLinkClassName={"page-link"}
+        previousClassName={"page-item"}
+        nextClassName={"page-item"}
+        previousLinkClassName={"page-link"}
+        nextLinkClassName={"page-link"}
+        activeClassName={styles.active}
+      />
     </>
   )
   
 }
 
-export default Search
+export default SearchAll

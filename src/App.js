@@ -11,10 +11,12 @@ import AllProducts from './pages/AllProducts';
 
 
 function App() {
+
+
   return (
     <>
     <Routes>
-      <Route path='/' element={<Home/>}/>
+      <Route path='/accueil' element={<Home/>}/>
       <Route path='/ventes' element={<OurProducts/>}/>
       <Route path='/locations' element={<LocationProducts/>}/>
       <Route path='/contact' element={<Contact/>}/>

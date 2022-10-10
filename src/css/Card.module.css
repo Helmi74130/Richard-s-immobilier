@@ -138,4 +138,13 @@ main{
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   overflow: hidden;
-}    
+}
+.active > a {
+    color: rgb(255, 255, 255) !Important;
+    background-image: linear-gradient(to right, #3e5f7a, #040508) !Important;
+}
+
+.active > a:hover
+{
+  background-color: #b89b75 !Important;
+}

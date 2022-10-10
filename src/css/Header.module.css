@@ -29,10 +29,49 @@ nav{
   display: flex;
   justify-content: space-evenly;
 }
-.liNav, .social{
+.social{
   list-style: none;
   font-size: 1.2em;
 }
+.liNav{
+  list-style: none;
+  font-size: 1.3em;
+  background-image: linear-gradient(
+    to right,
+    #b89b75,
+    #b89b75 50%,
+    rgb(255, 255, 255) 50%
+  );
+  background-size: 200% 100%;
+  background-position: -100%;
+  display: inline-block;
+  padding: 5px 0;
+  position: relative;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s ease-in-out;
+}
+
+.liNav:before{
+    content: '';
+    background: #b89b75;
+    display: block;
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    transition: all 0.3s ease-in-out;
+}
+
+.liNav:hover{
+  background-position: 0;
+}
+
+.liNav:hover::before {
+  width:100%;
+}
+
 a{
   text-decoration: none;
   color: white;
@@ -51,6 +90,20 @@ a:hover{
 }
 button{
   background-image: linear-gradient(to right, #5f707e, #040508);
+}
+
+
+.actives:before{
+  content: '' ;
+  background: #b89b75 ;
+  display: block ;
+  position: absolute ;
+  bottom: -3px ;
+  left: 0 ;
+  width: 0 ;
+  height: 3px ;
+  background-position: 0 ;
+  width:100% ;
 }
 
 

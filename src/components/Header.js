@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, NavLink} from "react-router-dom";
 import styles from '../css/Header.module.css'
 import img3 from '../img/richardbg.png'
 
 const Header = () => {
+
+
 
   const [largeur, setLargeur] = useState(window.innerWidth)
   const [toggleMenu, setToggleMenu]= useState(false)
@@ -27,10 +29,10 @@ const Header = () => {
   return (
     <header>
       <div className={styles.titleBlock}>
-        <Link to="/" className={styles.headerTitle}>
+        <NavLink to="/accueil" className={styles.headerTitle}>
           <img className={styles.image} alt='logo' src={img3}/>
           <p className='text-light'>Richard's immobilier</p>
-        </Link>
+        </NavLink>
         <div className={styles.buttonBlock}>
           <button className='btn btn-dark mt-2' onClick={toggleNavSmallScreen}><i className="bi bi-list"></i></button>
         </div>
@@ -38,11 +40,11 @@ const Header = () => {
       {(toggleMenu || largeur > 800) && (
         <nav>
           <ul className={styles.link}>
-            <li className={styles.liNav}><Link to="/">Accueil</Link></li>
-            <li className={styles.liNav}><Link to="/nosbiens">Nos biens</Link></li>
-            <li className={styles.liNav}><Link to="/ventes">Ventes</Link></li>
-            <li className={styles.liNav}><Link to="/locations">Locations</Link></li>
-            <li className={styles.liNav}><Link to="/contact">Contact</Link></li>
+            <li className={styles.liNav}><NavLink className={(navData) => (navData.isActive ? `${styles.actives} ` : '')} to="/accueil">Accueil</NavLink></li>
+            <li className={styles.liNav}><NavLink className={(navData) => (navData.isActive ? `${styles.actives} ` : '')} to="/nosbiens">Nos biens</NavLink></li>
+            <li className={styles.liNav}><NavLink className={(navData) => (navData.isActive ? `${styles.actives} ` : '')} to="/ventes">Ventes</NavLink></li>
+            <li className={styles.liNav}><NavLink className={(navData) => (navData.isActive ? `${styles.actives} ` : '')} to="/locations">Locations</NavLink></li>
+            <li className={styles.liNav}><NavLink className={(navData) => (navData.isActive ? `${styles.actives} ` : '')} to="/contact">Contact</NavLink></li>
           </ul>
         </nav>
       )}

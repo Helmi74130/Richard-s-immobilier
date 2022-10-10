@@ -3,6 +3,7 @@ import {  Link } from "react-router-dom";
 import axios from 'axios';
 import styles from '../css/Card.module.css'
 import img from '../img/richard.png'
+import ReactPaginate from 'react-paginate';
 
 
 const SearchAll = () => {
@@ -29,7 +30,6 @@ const SearchAll = () => {
     if (valueCity === '&filter[city][name][_eq]=localisation') {
       setValueCity('')
     }
-    console.log(valueCity);
     const [valuePriceMin, setvaluePriceMin] = useState(0);
     const handleChangeValuePriceMin = (e) => {
        setvaluePriceMin(e.target.value);   
@@ -80,7 +80,7 @@ const SearchAll = () => {
       checkInputLocalisation()
       e.preventDefault()
       const fetchData =async () =>{
-        await axios(`http://localhost:8055/items/product?fields=title,price,id,surface,type.name,city.name,price,thumbnail,rooms${valueProduct}${roomsValue}${valueCity}&filter[price][_between]=${valuePriceMin},${valuePriceMax}`)
+        await axios(`http://localhost:8055/items/product?fields=title,price,id,surface,type.name,city.name,price,thumbnail,rooms${valueProduct}${roomsValue}${valueCity}&filter[price][_between]=${valuePriceMin},${valuePriceMax}&limit=10`)
         .then( 
           response => {
             if (!response.data.data || response.data.data.length === 0) {
@@ -101,12 +101,16 @@ const SearchAll = () => {
       fetchData()
     }
 
+    const [pageNumber, setPageNumber] = useState(0);
+
     /* This function get the names of type and cities  */
     const [dataAll, setDataAll]= useState([])
     useEffect(()=>{
       const fetchData =async () =>{
         const result = await axios(`http://localhost:8055/items/product?fields=city.name,type.name`)
         setDataAll(result.data.data)
+        const total = result.data.data.length
+        setPageNumber(total/4)
       }
       fetchData()
     },[])
@@ -165,13 +169,30 @@ const SearchAll = () => {
     <option key={index} value={""+index}>{capitalizeFirstLetter(index)}</option>
   ))
 
+
   useEffect(()=>{
     const fetchData =async () =>{
-      const result = await axios('http://localhost:8055/items/product?fields=title,price,id,surface,city.name,price,thumbnail,rooms,type.name')
+      const result = await axios('http://localhost:8055/items/product?fields=title,price,id,surface,city.name,price,thumbnail,rooms,type.name&page=1&limit=4')
       setData(result.data.data)
     }
     fetchData()
   },[])
+
+  const testData =async (currentPage) =>{
+    const result = await axios(`http://localhost:8055/items/product?fields=title,price,id,surface,city.name,price,thumbnail,rooms,type.name&page=${currentPage}&limit=4`)
+    const data = result.data.data
+    return data
+  }
+
+  const handlePageClick = async (data) => {
+    let currentPage = data.selected + 1;
+    const commentFormServer = await testData(currentPage); 
+    setData(commentFormServer);
+  }
+
+  useEffect(()=>{
+    window.scrollTo({top: 0});
+  },[data])
 
   return (
     <>
@@ -226,12 +247,28 @@ const SearchAll = () => {
           <h2 className='text-center mt-3 text-danger'>{emptyData}</h2>
         </form>
       </div>
-      <h1 className={`${styles.h1} mt-5 ms-5 mb-5`}>Ventes</h1>
       <div className='container'>
         <div className='row justify-content-around'>
           {card}
         </div>
       </div>
+      <ReactPaginate
+        breakLabel="..."
+        nextLabel="suivant >"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={5}
+        pageCount={pageNumber}
+        previousLabel="< précédent"
+        renderOnZeroPageCount={null}
+        containerClassName={"pagination justify-content-center mt-5"}
+        pageClassName={"page-item"}
+        pageLinkClassName={"page-link"}
+        previousClassName={"page-item"}
+        nextClassName={"page-item"}
+        previousLinkClassName={"page-link"}
+        nextLinkClassName={"page-link"}
+        activeClassName={styles.active}
+      />
     </>
   )
   
