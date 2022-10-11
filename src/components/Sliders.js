@@ -11,7 +11,7 @@ function Sliders() {
 
   useEffect(()=>{
     const fetchData =async () =>{
-      const result = await axios('http://localhost:8055/items/carousel?fields=name.*')
+      const result = await axios('https://dd7548px.directus.app/items/carousel?fields=name.*')
       setData(result.data.data)
     }
     fetchData()
@@ -22,7 +22,7 @@ function Sliders() {
   const carousel = data[0]?.name.map(index => {
     return(
         <Carousel.Item key={index.id}>
-          <img className={styles.image} src={"http://localhost:8055/assets/"+index.directus_files_id} alt=""/>    
+          <img className={styles.image} src={"https://dd7548px.directus.app/assets/"+index.directus_files_id} alt=""/>    
           <Carousel.Caption>
             <p className='text-black'>A votre écoute depuis 20 ans</p>
           </Carousel.Caption>

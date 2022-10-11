@@ -21,7 +21,7 @@ const Product = () => {
 
   useEffect(()=>{
     const fetchData =async () =>{
-      const result = await axios(`http://localhost:8055/items/product?filter[id][_eq]=${params.id}&fields=title,description,price,reference,id,state,date_created,position,surface,type.name,bedrooms,city.name,price,thumbnail,rooms,images.*`)
+      const result = await axios(`https://dd7548px.directus.app/items/product?filter[id][_eq]=${params.id}&fields=title,description,price,reference,id,state,date_created,position,surface,type.name,bedrooms,city.name,price,thumbnail,rooms,images.*`)
       setData(result.data.data)
     }
     fetchData()
@@ -30,7 +30,7 @@ const Product = () => {
 
   useEffect(()=>{
     const fetchData =async () =>{
-      const result = await axios(`http://localhost:8055/items/product?filter[id][_eq]=${params.id}&fields=images.*,tag.tag_id.name`)
+      const result = await axios(`https://dd7548px.directus.app/items/product?filter[id][_eq]=${params.id}&fields=images.*,tag.tag_id.name`)
       setImageData(result.data.data)
     }
     fetchData()
@@ -99,7 +99,7 @@ function surfacePrice(price, surface){
         <Slider className='col-md-7 col-11 mt-5' {...settings}>
           {imageData[0]?.images.map(index =>(
           <div key={index.id}>
-            <img className={styles.img} alt='' src={"http://localhost:8055/assets/"+index.directus_files_id}/>
+            <img className={styles.img} alt='' src={"https://dd7548px.directus.app/assets/"+index.directus_files_id}/>
           </div>
           ))}
         </Slider>

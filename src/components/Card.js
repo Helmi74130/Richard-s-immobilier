@@ -10,7 +10,7 @@ const Card = () => {
 
   useEffect(()=>{
     const fetchData =async () =>{
-      const result = await axios('http://localhost:8055/items/product?fields=title,price,id,surface,city.name,price,thumbnail,rooms')
+      const result = await axios('https://dd7548px.directus.app/items/product?fields=title,price,id,surface,city.name,price,thumbnail,rooms')
       setData(result.data.data)
     }
     fetchData()
@@ -18,7 +18,7 @@ const Card = () => {
 
  const card =  data.map(index => (
     <Link to={"/nosBiens/"+index.id} key={index.id} className={styles.card}>
-      <img className={styles.imgCard} src={"http://localhost:8055/assets/"+index.thumbnail} alt="image de biens immobilier"/>
+      <img className={styles.imgCard} src={"https://dd7548px.directus.app/assets/"+index.thumbnail} alt="image de biens immobilier"/>
       <div className={styles.cardDescription}>
         <div className={styles.descriptionTop}>
           <h3>{index.title} {index.rooms} pièces</h3>

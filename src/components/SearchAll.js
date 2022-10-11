@@ -81,7 +81,7 @@ const SearchAll = () => {
       checkInputLocalisation()
       e.preventDefault()
       const fetchData =async () =>{
-        await axios(`http://localhost:8055/items/product?fields=title,price,id,surface,type.name,city.name,price,thumbnail,rooms${valueProduct}${roomsValue}${valueCity}&filter[price][_between]=${valuePriceMin},${valuePriceMax}&sort=-date_created`)
+        await axios(`https://dd7548px.directus.app/items/product?fields=title,price,id,surface,type.name,city.name,price,thumbnail,rooms${valueProduct}${roomsValue}${valueCity}&filter[price][_between]=${valuePriceMin},${valuePriceMax}&sort=-date_created`)
         .then( 
           response => {
             if (!response.data.data || response.data.data.length === 0) {
@@ -108,7 +108,7 @@ const SearchAll = () => {
     const [dataAll, setDataAll]= useState([])
     useEffect(()=>{
       const fetchData =async () =>{
-        const result = await axios(`http://localhost:8055/items/product?fields=city.name,type.name&sort=-date_created`)
+        const result = await axios(`https://dd7548px.directus.app/items/product?fields=city.name,type.name&sort=-date_created`)
         setDataAll(result.data.data)
         const total = result.data.data.length
         setPageNumber(total/4)
@@ -141,7 +141,7 @@ const SearchAll = () => {
     <ul key={index.id} className={`${styles.cards} col-5 mt-5`}>
       <li>
         <Link to={"/produit/"+index.id}  className={styles.card}>
-          <img src={"http://localhost:8055/assets/"+index.thumbnail} className={styles.card__image} alt="image du bien immobilier" />
+          <img src={"https://dd7548px.directus.app/assets/"+index.thumbnail} className={styles.card__image} alt="image du bien immobilier" />
           <div className={styles.card__overlay}>
             <div className={styles.card__header}>
               <svg className={styles.card__arc} xmlns=""><path /></svg>                     
@@ -173,14 +173,14 @@ const SearchAll = () => {
 
   useEffect(()=>{
     const fetchData =async () =>{
-      const result = await axios('http://localhost:8055/items/product?fields=title,price,id,surface,city.name,price,thumbnail,rooms,type.name&page=1&limit=4&sort=-date_created')
+      const result = await axios('https://dd7548px.directus.app/items/product?fields=title,price,id,surface,city.name,price,thumbnail,rooms,type.name&page=1&limit=4&sort=-date_created')
       setData(result.data.data)
     }
     fetchData()
   },[])
 
   const testData =async (currentPage) =>{
-    const result = await axios(`http://localhost:8055/items/product?fields=title,price,id,surface,city.name,price,thumbnail,rooms,type.name&page=${currentPage}&limit=4&sort=-date_created`)
+    const result = await axios(`https://dd7548px.directus.app/items/product?fields=title,price,id,surface,city.name,price,thumbnail,rooms,type.name&page=${currentPage}&limit=4&sort=-date_created`)
     const data = result.data.data
     return data
   }
