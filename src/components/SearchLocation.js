@@ -120,6 +120,7 @@ const SearchAll = () => {
     let citys =[]
     let goods =[]
     dataAll.map(index => {
+      <p key={index.id}></p>
       citys.push(index.city.name)
       goods.push(index.type.name)
     })
@@ -138,7 +139,7 @@ const SearchAll = () => {
 
     /* this function displays search data */
   const card =  data.map(index => (
-    <ul key={index.id} className={`${styles.cards} col-5 mt-5`}>
+    <ul key={index.id} className={`${styles.cards} col-lg-5 col-md-10 col-11 mt-5`}>
       <li>
         <Link to={"/produit/"+index.id}  className={styles.card}>
           <img src={"https://dd7548px.directus.app/assets/"+index.thumbnail} className={styles.card__image} alt="image du bien immobilier" />
@@ -163,11 +164,11 @@ const SearchAll = () => {
   ))
 
   const selectGoods = goodsFilter.map(index =>(
-    <option key={index} value={""+index}>{capitalizeFirstLetter(index)}</option>
+    <option key={index.id} value={""+index}>{capitalizeFirstLetter(index)}</option>
   ))
 
   const selectCity = citysFilter.map(index =>(
-    <option key={index} value={""+index}>{capitalizeFirstLetter(index)}</option>
+    <option key={index.id} value={""+index}>{capitalizeFirstLetter(index)}</option>
   ))
 
 

@@ -45,7 +45,7 @@
 
 .imgBlock{
   position: absolute;
-  bottom: 40%;
+  bottom: 30%;
 }
 
 .block{
@@ -57,6 +57,42 @@
   font-size: 3em;
   color: #b89b75;
   font-family: 'Times New Roman', Times, serif;
+}
+
+@media only screen and (max-width: 1200px) {
+  .block{
+    background-image: linear-gradient(to right, #3e5f7a, #040508);
+    height: 350px;
+    margin-bottom: 160px;
+  }
+  .imgBlock{
+    top: 30%;
+  }
+}
+
+@media only screen and (max-width: 1170px) {
+  .imgBottomEnd{
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 996px) {
+  .imgBottomMidle{
+    display: none;
+  }
+
+}
+
+@media only screen and (max-width: 768px) {
+  .imgBottomFirst{
+    display: none;
+  }
+  .block{
+    height: 300px;
+    margin-bottom: 60px;
+    margin-top: 100px;
+  }
+
 }
 
 .show{

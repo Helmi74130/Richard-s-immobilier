@@ -40,7 +40,7 @@ const Header = () => {
       {(toggleMenu || largeur > 800) && (
         <nav>
           <ul className={styles.link}>
-            <li className={styles.liNav}><NavLink className={(navData) => (navData.isActive ? `${styles.actives} ` : '')} to="/accueil">Accueil</NavLink></li>
+            <li className={styles.liNav}><NavLink className={(navData) => (navData.isActive ? `${styles.actives}  ` : '')} to="/accueil">Accueil</NavLink></li>
             <li className={styles.liNav}><NavLink className={(navData) => (navData.isActive ? `${styles.actives} ` : '')} to="/nosbiens">Nos biens</NavLink></li>
             <li className={styles.liNav}><NavLink className={(navData) => (navData.isActive ? `${styles.actives} ` : '')} to="/ventes">Ventes</NavLink></li>
             <li className={styles.liNav}><NavLink className={(navData) => (navData.isActive ? `${styles.actives} ` : '')} to="/locations">Locations</NavLink></li>

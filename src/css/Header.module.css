@@ -119,9 +119,11 @@ button{
   .link{
     display: flex;
     flex-direction: column;
+    position: relative;
   }
   .liNav{
     font-size: 2.5rem;
+    margin-right: 35px;
   }
   nav{
     text-align: center;

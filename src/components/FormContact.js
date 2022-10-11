@@ -5,8 +5,8 @@ import img from '../img/villa2.jpg'
 const FormContact = () => {
   return (
     <div className={`${styles.contain} container mt-5`}>
-      <div className='row'>
-          <img className={`${styles.img} col-lg-6 col-12 p-0`} src={img} alt="Villa avec piscine" />
+      <div className='row justify-content-center'>
+          <img className={`${styles.img} col-lg-6 col-md-12 col-11 p-0`} src={img} alt="Villa avec piscine" />
           <div className={`${styles.containText} col-lg-6 col-12 text-center p-5`}>
             <h2 className={styles.h2} >Contactez-nous pour plus de  <br/>renseignement</h2>
             <p className={styles.p}>Ou prenez directement rendez-vous <br/> par téléphone au <a className='text-dark' href='tel:+0687741241'>0687741241</a></p>
