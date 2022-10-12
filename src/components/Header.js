@@ -6,7 +6,26 @@ import img3 from '../img/richardbg.png'
 const Header = () => {
 
 
+   // Sticky Menu Area
+   useEffect(() => {
+    window.addEventListener('scroll', isSticky);
+    return () => {
+        window.removeEventListener('scroll', isSticky);
+    };
+});
 
+       
+/* Method that will fix header after a specific scrollable */
+       const isSticky = (e) => {
+            const header = document.querySelector('.headerSection');
+            const scrollTop = window.scrollY;
+            if (scrollTop >= 700) {
+              header.classList.add(styles.isSticky)
+            }else{
+              header.classList.remove(styles.isSticky);
+            } 
+        };
+    
   const [largeur, setLargeur] = useState(window.innerWidth)
   const [toggleMenu, setToggleMenu]= useState(false)
   const toggleNavSmallScreen= ()=>{
@@ -27,7 +46,7 @@ const Header = () => {
   },[])
 
   return (
-    <header>
+    <header className='headerSection'>
       <div className={styles.titleBlock}>
         <NavLink to="/accueil" className={styles.headerTitle}>
           <img className={styles.image} alt="logo de l'entreprise" src={img3}/>

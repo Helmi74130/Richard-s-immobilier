@@ -7,6 +7,25 @@ header{
   z-index: 1;
   font-family: 'Times New Roman', Times, serif;
 }
+.isSticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  animation: 500ms ease-in-out fadeInDown;
+}
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+} 
+100% {
+    opacity: 0.9;
+    transform: translateY(0);
+} 
+}
+
 .headerTitle{
   font-family: 'Times New Roman', Times, serif;
   font-size: 2em;

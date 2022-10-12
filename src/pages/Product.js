@@ -52,7 +52,7 @@ let latitude =''
  let urlMap = `https://maps.google.com/maps?q=${latitude},${longitude}&hl=es;z=14&amp&output=embed`
   
   const tag = imageData[0]?.tag.map(index => (
-      <p key={index.tag_id.name}>{index.tag_id.name}</p>
+      <p key={index.tag_id.name}>{index.tag_id.name}</p>  
   ))
 
 function surfacePrice(price, surface){
@@ -95,8 +95,8 @@ function surfacePrice(price, surface){
       <Header/>
       {product}
       <div className='container'>
-        <div className='row'>
-        <Slider className='col-md-7 col-11 mt-5' {...settings}>
+        <div className='row justify-content-center'>
+        <Slider className='col-lg-7 col-12 mt-5' {...settings}>
           {imageData[0]?.images.map(index =>(
           <div key={index.id}>
             <img className={styles.img} alt='' src={"https://dd7548px.directus.app/assets/"+index.directus_files_id}/>
@@ -105,10 +105,9 @@ function surfacePrice(price, surface){
         </Slider>
         {data.map(index => (
           <>
-            <div key={index.id} className='col-md-4 col-11 d-flex flex-column text-center justify-content-evenly'>
+            <div key={index.id} className='col-lg-5 col-12 mt-5 d-flex flex-column text-center justify-content-evenly align-items-center'>
               <div className=''>
-                <p className={styles.price}>{separator(index.price)}<i className="bi bi-currency-euro"></i></p>
-              {/* <p>{index.state === 'vente'? 'soit '+ Math.round(surfacePrice(index.price, index.surface))+' e/m2': ''}</p> */}
+                <p className={`${styles.price}`}>{separator(index.price)}<i className="bi bi-currency-euro"></i></p>
               </div>
               <div className=''>
                 <p className='fs-2'> {index.rooms} {index.rooms === null ? null : 'pièces'} </p>
@@ -120,12 +119,13 @@ function surfacePrice(price, surface){
                 <p>Réf: {index.reference}</p>
               </div>
             </div>
-            <div className='container mt-5'>
+            <div className='containermt-5 mt-5'>
               <div className='row'>
-                <div className='col-12 row'>
-                  <div className='col-7'>
+                <div className='col-12 row text-center align-items-center justify-content-center'>
+                  <div className='col-lg-7 col-12'>
                     <h3>L'essentiel</h3>
                     <div className='d-flex justify-content-around mt-4 border pt-3'>
+                      <p><i className="bi bi-currency-euro"></i>{index.state === 'vente'? Math.round(surfacePrice(index.price, index.surface))+' m2': ''}</p>
                       {index.rooms?<div className='d-flex'>
                         <svg width="24" height="24" viewBox="0 0 39.9 39.9" xmlns="http://www.w3.org/2000/svg" className="c-icon__svg" aria-hidden="true"><path d="M0 4.9V35c0 2.7 2.2 4.9 4.9 4.9H35c2.7 0 4.9-2.2 4.9-4.9V4.9C39.9 2.2 37.7 0 35 0H4.8C2.2.1 0 2.3 0 4.9zm13-2.6h21.9c1.5 0 2.7 1.2 2.7 2.7v30.1c0 1.5-1.2 2.7-2.7 2.7H16.8V14.3H13v-12zm0 14.2h1.6v21.2H4.8c-1.5 0-2.7-1.2-2.7-2.7V16.5H13zm-2.2-2.2H2.2V4.9c0-1.5 1.2-2.7 2.7-2.7h6v12.1h-.1z"></path></svg>
                         <p className='ms-2'>{index.rooms} {index.rooms === 1 ? 'pièce':'pièces'}</p>
@@ -148,9 +148,7 @@ function surfacePrice(price, surface){
                         <p>{index.description}</p>
                     </div></> : null}
                   </div>
-                  <div className='col-4'>
-                  <iframe width="100%" height="100%"  src ={urlMap}></iframe>
-                  </div>
+                  <iframe className='col-lg-5 col-12 mt-3' width="100%" height="100%" src ={urlMap}></iframe>
                 </div>
               </div>
             </div>
