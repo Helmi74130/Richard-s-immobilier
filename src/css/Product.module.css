@@ -10,3 +10,8 @@
   text-align: center;
   color: rgb(187, 117, 25);
 }
+@media screen and (max-width: 991px) {
+  .piou{
+    height: 20%;
+  }
+}

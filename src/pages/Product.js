@@ -119,7 +119,7 @@ function surfacePrice(price, surface){
                 <p>Réf: {index.reference}</p>
               </div>
             </div>
-            <div className='containermt-5 mt-5'>
+            <div className='container mt-5 mt-5'>
               <div className='row'>
                 <div className='col-12 row text-center align-items-center justify-content-center'>
                   <div className='col-lg-7 col-12'>
@@ -148,7 +148,7 @@ function surfacePrice(price, surface){
                         <p>{index.description}</p>
                     </div></> : null}
                   </div>
-                  <iframe className='col-lg-5 col-12 mt-3' width="100%" height="100%" src ={urlMap}></iframe>
+                  <iframe className={`${styles.piou} col-lg-5 col-12 mt-3`} width="100%" height="100%" src ={urlMap}></iframe>
                 </div>
               </div>
             </div>
@@ -156,7 +156,7 @@ function surfacePrice(price, surface){
         ))}
         </div>
       </div>
-    <Footer/>
+      <Footer/>
     </div>
   )
 }
